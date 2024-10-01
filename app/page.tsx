@@ -68,8 +68,13 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Card>
+    <div className="relative flex items-center justify-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    
+      <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]">
+        
+      </div>
+     
+      <Card className="shadow-md">
         {!isSubmitted && (
           <CardHeader>
             <CardTitle className="font-bold text-center">Contact Form</CardTitle>
