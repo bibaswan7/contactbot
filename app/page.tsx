@@ -69,7 +69,7 @@ export default function Contact() {
         {!isSubmitted && (
           <CardHeader>
             <CardTitle className="font-bold text-center">Contact Form</CardTitle>
-            <CardDescription>We'd love to hear from you. Please fill out the form below.
+            <CardDescription>We would love to hear from you. Please fill out the form below.
             </CardDescription>
           </CardHeader>
         )}
