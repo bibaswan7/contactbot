@@ -25,11 +25,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { sendForm } from "@/actions/sendForm";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
-
+import { FaSpinner } from "react-icons/fa";
 
 export default function Contact() {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
@@ -45,9 +46,9 @@ export default function Contact() {
 
   const onSubmit = async (values: z.infer<typeof contactFormSchema>) => {
     try {
+      setIsSubmitting(true);
       await sendForm(values);
-      console.log(values);
-      setIsSubmitted(true); 
+      setIsSubmitted(true);
       toast({
         variant: "default",
         title: "Success",
@@ -60,6 +61,9 @@ export default function Contact() {
         title: "Error",
         description: "Something went wrong. Please try again later.",
       });
+    }
+    finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -147,10 +151,16 @@ export default function Contact() {
                     </FormItem>
                   )}
                 />
-                <Button className="w-full bg-black" type="submit">Submit</Button>
+                <Button className="w-full bg-black" type="submit">{isSubmitting ? (
+                  <>
+                    <FaSpinner className="animate-spin mr-2" />
+                    Submitting...
+                  </>
+                ) : (
+                  "Submit"
+                )}</Button>
               </form>
             </Form>
-
           )}
         </CardContent>
       </Card>
